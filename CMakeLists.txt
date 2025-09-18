@@ -45,35 +45,35 @@ add_executable(Khanh_Faru-popcnt ${POLARIS_COMMON_SRC} ${POLARIS_NON_BMI2_SRC})
 add_executable(Khanh_Faru-compat ${POLARIS_COMMON_SRC} ${POLARIS_NON_BMI2_SRC})
 
 if(NOT MSVC OR PS_CLANG)
-	target_compile_options(polaris-native PUBLIC -march=native)
-	target_compile_options(polaris-bmi2 PUBLIC -march=haswell)
-	target_compile_options(polaris-modern PUBLIC -march=bdver2 -mno-tbm -mno-sse4a) # piledriver without amd-specific extensions
-	target_compile_options(polaris-popcnt PUBLIC -march=nehalem)
-	target_compile_options(polaris-compat PUBLIC -march=core2)
+	target_compile_options(Khanh_Faru-native PUBLIC -march=native)
+	target_compile_options(Khanh_Faru-bmi2 PUBLIC -march=haswell)
+	target_compile_options(Khanh_Faru-modern PUBLIC -march=bdver2 -mno-tbm -mno-sse4a) # piledriver without amd-specific extensions
+	target_compile_options(Khanh_Faru-popcnt PUBLIC -march=nehalem)
+	target_compile_options(Khanh_Faru-compat PUBLIC -march=core2)
 endif()
 
 if(NOT MSVC)
-	target_compile_options(polaris-native PUBLIC -mtune=native)
-	target_compile_options(polaris-bmi2 PUBLIC -mtune=haswell)
-	target_compile_options(polaris-modern PUBLIC -mtune=znver2) # zen 2
-	target_compile_options(polaris-popcnt PUBLIC -mtune=sandybridge)
-	target_compile_options(polaris-compat PUBLIC -mtune=core2)
+	target_compile_options(Khanh_Faru-native PUBLIC -mtune=native)
+	target_compile_options(Khanh_Faru-bmi2 PUBLIC -mtune=haswell)
+	target_compile_options(Khanh_Faru-modern PUBLIC -mtune=znver2) # zen 2
+	target_compile_options(Khanh_Faru-popcnt PUBLIC -mtune=sandybridge)
+	target_compile_options(Khanh_Faru-compat PUBLIC -mtune=core2)
 elseif(MSVC AND PS_CLANG)
-	target_compile_options(polaris-native PUBLIC /tune:native)
-	target_compile_options(polaris-bmi2 PUBLIC /tune:skylake)
-	target_compile_options(polaris-modern PUBLIC /tune:znver2) # zen 2
-	target_compile_options(polaris-popcnt PUBLIC /tune:sandybridge)
-	target_compile_options(polaris-compat PUBLIC /tune:core2)
+	target_compile_options(Khanh_Faru-native PUBLIC /tune:native)
+	target_compile_options(Khanh_Faru-bmi2 PUBLIC /tune:skylake)
+	target_compile_options(Khanh_Faru-modern PUBLIC /tune:znver2) # zen 2
+	target_compile_options(Khanh_Faru-popcnt PUBLIC /tune:sandybridge)
+	target_compile_options(Khanh_Faru-compat PUBLIC /tune:core2)
 endif()
 
 if(PS_FAST_PEXT)
-	target_compile_definitions(polaris-native PUBLIC PS_FAST_PEXT)
+	target_compile_definitions(Khanh_Faru-native PUBLIC PS_FAST_PEXT)
 endif()
 
 get_directory_property(TARGETS BUILDSYSTEM_TARGETS)
 
 foreach(TARGET ${TARGETS})
-	string(REPLACE "polaris-" "" ARCH_NAME "${TARGET}")
+	string(REPLACE "Khanh_Faru-" "" ARCH_NAME "${TARGET}")
 	string(REPLACE "-" "_" ARCH_NAME "${ARCH_NAME}")
 	string(TOUPPER ${ARCH_NAME} ARCH_NAME)
 
