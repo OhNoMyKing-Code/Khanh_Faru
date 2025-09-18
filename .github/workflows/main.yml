@@ -1,0 +1,31 @@
+name: Build Khanh_Faru
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install CMake
+        uses: lukka/get-cmake@v3
+
+      - name: Configure & Build
+        run: |
+          cmake -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --config Release -j$(nproc || echo 2)
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Khanh_Faru-${{ matrix.os }}
+          path: build/**
