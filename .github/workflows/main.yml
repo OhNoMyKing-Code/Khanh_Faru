@@ -1,7 +1,6 @@
 name: Build Khanh_Faru
 
 on:
-  workflow_dispatch:
   push:
     branches: [ "main" ]
   pull_request:
@@ -17,10 +16,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install CMake
-        uses: lukka/get-cmake@v3
-
-      - name: Configure & Build
+      - name: Build with CMake
         run: |
           cmake -B build -DCMAKE_BUILD_TYPE=Release
           cmake --build build --config Release -j$(nproc || echo 2)
