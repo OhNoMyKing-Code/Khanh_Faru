@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-project(polaris VERSION 1.8.1)
+project(Khanh_Faru VERSION 0.1)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -38,11 +38,11 @@ set(POLARIS_COMMON_SRC src/types.h src/main.cpp src/uci.h src/uci.cpp src/core.h
 set(POLARIS_BMI2_SRC src/attacks/bmi2/data.h src/attacks/bmi2/attacks.h src/attacks/bmi2/attacks.cpp)
 set(POLARIS_NON_BMI2_SRC src/attacks/black_magic/data.h src/attacks/black_magic/attacks.h src/attacks/black_magic/attacks.cpp)
 
-add_executable(polaris-native ${POLARIS_COMMON_SRC} ${POLARIS_BMI2_SRC} ${POLARIS_NON_BMI2_SRC})
-add_executable(polaris-bmi2 ${POLARIS_COMMON_SRC} ${POLARIS_BMI2_SRC})
-add_executable(polaris-modern ${POLARIS_COMMON_SRC} ${POLARIS_NON_BMI2_SRC})
-add_executable(polaris-popcnt ${POLARIS_COMMON_SRC} ${POLARIS_NON_BMI2_SRC})
-add_executable(polaris-compat ${POLARIS_COMMON_SRC} ${POLARIS_NON_BMI2_SRC})
+add_executable(Khanh_Faru-native ${POLARIS_COMMON_SRC} ${POLARIS_BMI2_SRC} ${POLARIS_NON_BMI2_SRC})
+add_executable(Khanh_Faru-bmi2 ${POLARIS_COMMON_SRC} ${POLARIS_BMI2_SRC})
+add_executable(Khanh_Faru-modern ${POLARIS_COMMON_SRC} ${POLARIS_NON_BMI2_SRC})
+add_executable(Khanh_Faru-popcnt ${POLARIS_COMMON_SRC} ${POLARIS_NON_BMI2_SRC})
+add_executable(Khanh_Faru-compat ${POLARIS_COMMON_SRC} ${POLARIS_NON_BMI2_SRC})
 
 if(NOT MSVC OR PS_CLANG)
 	target_compile_options(polaris-native PUBLIC -march=native)
