@@ -51,9 +51,9 @@ namespace polaris
 
 	namespace
 	{
-		constexpr auto Name = "Polaris";
+		constexpr auto Name = "Khanh_Faru";
 		constexpr auto Version = PS_STRINGIFY(PS_VERSION);
-		constexpr auto Author = "Ciekce";
+		constexpr auto Author = "Do Trong Khanh";
 
 		GlobalOptions s_opts{};
 
